@@ -1,0 +1,90 @@
+═══════════════════════════════════════════════════════════════
+  INSTRUCCIONES PARA INICIAR LA SALA DE CHAT WEBSOCKET
+═══════════════════════════════════════════════════════════════
+
+📌 IMPORTANTE: Necesitas DOS cosas corriendo al mismo tiempo:
+
+1️⃣ SERVIDOR WEBSOCKET (Daemon) - Debe estar corriendo siempre
+2️⃣ CLIENTE HTML (Página web) - Se abre en el navegador
+
+═══════════════════════════════════════════════════════════════
+  PASO 1: INICIAR EL SERVIDOR WEBSOCKET
+═══════════════════════════════════════════════════════════════
+
+Opción A - Más fácil:
+  → Doble clic en: "start daemon.bat"
+  → Se abrirá una ventana negra (NO LA CIERRES)
+
+Opción B - Manual:
+  → Abre PowerShell o CMD
+  → Ejecuta:
+     "C:\xampp\php\php.exe" -q C:\xampp\daemons\sala_chat\SalaChatServer.php
+
+✅ Cuando veas "Server started" y "Listening on: localhost:9000"
+   significa que el servidor está funcionando correctamente.
+
+⚠️ IMPORTANTE: Deja esta ventana abierta mientras uses el chat.
+
+═══════════════════════════════════════════════════════════════
+  PASO 2: ABRIR LA PÁGINA DEL CHAT
+═══════════════════════════════════════════════════════════════
+
+Opción A - Si tienes XAMPP con Apache corriendo:
+  → Abre tu navegador
+  → Ve a: http://localhost/sala_chat/client.html
+
+Opción B - Abrir archivo directamente:
+  → Navega a: xampp/htdocs/sala_chat/client.html
+  → Doble clic en client.html o arrástralo al navegador
+
+═══════════════════════════════════════════════════════════════
+  PASO 3: USAR EL CHAT
+═══════════════════════════════════════════════════════════════
+
+1. Ingresa tu alias (ej: PEPE, MARIETTA)
+2. Haz clic en "Reconectar" para conectarte
+3. Espera a ver "Conectado" en verde
+4. Escribe mensajes y haz clic en "Enviar"
+
+═══════════════════════════════════════════════════════════════
+  PROBAR MULTIUSUARIO
+═══════════════════════════════════════════════════════════════
+
+1. Abre varias pestañas del navegador
+2. En cada una, ingresa un alias diferente
+3. Haz clic en "Reconectar" en cada pestaña
+4. Envía mensajes desde una pestaña
+5. Verás que aparecen en todas las demás pestañas
+
+═══════════════════════════════════════════════════════════════
+  SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+❌ "No se puede conectar"
+   → Verifica que el servidor (PASO 1) esté corriendo
+   → Verifica que veas "Listening on: localhost:9000"
+
+❌ "Error al enviar mensaje"
+   → Verifica que estés conectado (debe decir "Conectado" en verde)
+   → Haz clic en "Reconectar"
+
+❌ El servidor no inicia
+   → Verifica que PHP esté instalado en C:\xampp\php\
+   → Verifica que el puerto 9000 no esté en uso
+
+═══════════════════════════════════════════════════════════════
+  ESTRUCTURA DE ARCHIVOS
+═══════════════════════════════════════════════════════════════
+
+xampp/
+├── daemons/sala_chat/     ← SERVIDOR (debe estar corriendo)
+│   ├── SalaChatServer.php
+│   ├── websockets.php
+│   ├── users.php
+│   └── start daemon.bat   ← Doble clic aquí para iniciar
+│
+└── htdocs/sala_chat/      ← CLIENTE (página web)
+    └── client.html        ← Abrir en el navegador
+
+═══════════════════════════════════════════════════════════════
+
