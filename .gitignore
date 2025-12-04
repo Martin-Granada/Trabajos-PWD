@@ -1,0 +1,68 @@
+# CakePHP 4 .gitignore
+
+# Composer
+/vendor/
+composer.phar
+composer.lock
+
+# Logs
+/logs/*
+!/logs/.gitkeep
+*.log
+
+# Temporary files
+/tmp/*
+!/tmp/.gitkeep
+/tmp/cache/*
+!/tmp/cache/.gitkeep
+/tmp/cache/models/*
+!/tmp/cache/models/.gitkeep
+/tmp/cache/persistent/*
+!/tmp/cache/persistent/.gitkeep
+/tmp/sessions/*
+!/tmp/sessions/.gitkeep
+/tmp/tests/*
+!/tmp/tests/.gitkeep
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# PHP
+*.php~
+*.php.bak
+
+# Testing
+/phpunit.xml
+.phpunit.result.cache
+/coverage/
+
+# Node modules (si usas npm)
+node_modules/
+package-lock.json
+
+# Build files
+/build/
+
+# Configuración local (si existe)
+config/app_local.php
+
+# Archivos de debug
+webroot/phpinfo.php
+webroot/test_rewrite.php
+
