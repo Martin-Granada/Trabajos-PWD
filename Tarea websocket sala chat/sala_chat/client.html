@@ -308,14 +308,20 @@
                                 // Los mensajes de "Usuario se ha unido" solo se muestran a otros usuarios, no a ti
                             }
                         } else {
-                            // Mensaje de otro usuario
-                            log(data.alias + ': ' + data.message, 'other');
+                            // Mensajes estructurados: asignar estilo propio si coincide el alias
+                            var msgType = (data.alias && data.alias === alias) ? 'own' : 'other';
+                            log(data.alias + ': ' + data.message, msgType);
                         }
                     } catch (e) {
                         // Si no es JSON, tratar como mensaje de texto plano
                         var message = event.data;
+                        var msgType = 'other';
                         if (message.includes(':')) {
-                            log(message, 'other');
+                            var aliasPart = message.split(':')[0].trim();
+                            if (aliasPart === alias) {
+                                msgType = 'own';
+                            }
+                            log(message, msgType);
                         } else {
                             log(message, 'system');
                         }
@@ -381,7 +387,7 @@
             
             try {
                 socket.send(messageWithAlias);
-                log(alias + ': ' + message, 'own');
+                // Esperamos al eco del servidor para evitar duplicados en pantalla
                 txt.value = '';
                 txt.focus();
             } catch(ex) {

@@ -42,7 +42,7 @@ abstract class WebSocketServer {
     socket_listen($this->master,20)                               or die("Failed: socket_listen()");
     //Se añade el socket maestro al array de sockets abiertos
     $this->sockets['m'] = $this->master;
-    $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ".$this->master);
+    $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ready");
 
     
   }
@@ -119,7 +119,7 @@ abstract class WebSocketServer {
           } 
           else {
             $this->connect($client);
-            $this->stdout("Client connected. " . $client);
+            $this->stdout("Client connected.");
           }
         }
         //En otro caso, el cliente ya estaba conectado y manda alguna información
@@ -143,7 +143,7 @@ abstract class WebSocketServer {
               case 125: // ECANCELED    -- Operation canceled
               case 10053: // ??     -- Connection aborted
                 
-                $this->stderr("Unusual disconnect on socket " . $socket);
+                $this->stderr("Unusual disconnect on socket");
                 $this->disconnect($socket, true, $sockErrNo); // disconnect before clearing error, in case someone with their own implementation wants to check for error conditions on the socket.
                 break;
               default:
@@ -157,7 +157,7 @@ abstract class WebSocketServer {
           //Si NO hubo error al recibir los datos PERO se reciben 0 bytes => conexión perdida
           elseif ($numBytes == 0) {
             $this->disconnect($socket);
-            $this->stderr("Client disconnected. TCP connection lost: " . $socket);
+            $this->stderr("Client disconnected. TCP connection lost");
           }
           //Si no hubo ningún error y la información no está vacía...
           else {
@@ -203,7 +203,7 @@ abstract class WebSocketServer {
       }
 
       if ($triggerClosed) {
-        $this->stdout("Client disconnected. ".$disconnectedUser->socket);
+        $this->stdout("Client disconnected.");
         $this->closed($disconnectedUser);
         socket_close($disconnectedUser->socket);
       }
